@@ -1,5 +1,9 @@
 import Phaser from 'phaser'
-import BouncingLogo from './bouncingLogo'
+import BouncingLogo from './BouncingLogo'
+//need to import the grid class from @jbernard3396/grid-bound
+//export statement looks like exports.Grid = Grid;
+import { Grid } from '@jbernard3396/grid-bound'
+
 
 enum ImageNames
 {
@@ -26,6 +30,10 @@ export default class HelloWorldScene extends Phaser.Scene
 
     create()
     {
+		const grid = new Grid(4,4);
+		console.log(grid);
+		
+
         this.add.image(400, 300, ImageNames.Sky)
 
         const emitter = this.createEmitter(ImageNames.RedParticle)
