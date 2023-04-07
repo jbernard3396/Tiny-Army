@@ -19,6 +19,9 @@
   "publishConfig": {
     "@Jbernard3396:registry": "https://npm.pkg.github.com"
   },
+  "dependencies": {
+    "@jbernard3396/grid-bound": "github:jbernard3396/grid-bound"
+  },
   "devDependencies": {
     "@jest/globals": "^29.5.0",
     "@types/node": "^18.15.0",
