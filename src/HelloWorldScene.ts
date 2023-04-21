@@ -1,15 +1,15 @@
 import Phaser from 'phaser'
-import BouncingLogo from './BouncingLogo'
 //need to import the grid class from @jbernard3396/grid-bound
 //export statement looks like exports.Grid = Grid;
 import { Grid } from '@jbernard3396/grid-bound'
+import Board from './Board'
+import Piece from './Piece'
 
 
 enum ImageNames
 {
-	Sky = 'sky',
-	Logo = 'logo',
-	RedParticle = 'red_particle'
+	Knight = 'knight',
+	Board = 'board'
 }
 
 export default class HelloWorldScene extends Phaser.Scene
@@ -21,37 +21,15 @@ export default class HelloWorldScene extends Phaser.Scene
 
 	preload()
     {
-        this.load.setBaseURL('http://labs.phaser.io')
-
-        this.load.image(ImageNames.Sky, 'assets/skies/space3.png')
-        this.load.image(ImageNames.Logo, 'assets/sprites/phaser3-logo.png')
-        this.load.image(ImageNames.RedParticle, 'assets/particles/red.png')
+		this.load.image(ImageNames.Knight, './assets/units/knight.png');
+		this.load.image(ImageNames.Board, './assets/ui/board_tile.png');
     }
 
     create()
     {
-		const grid = new Grid(4,4);
-		console.log(grid);
-		
-
-        this.add.image(400, 300, ImageNames.Sky)
-
-        const emitter = this.createEmitter(ImageNames.RedParticle)
-		const logo = new BouncingLogo(this, 400, 100, ImageNames.Logo)
-
-        emitter.startFollow(logo.display)
-	}
-	
-	private createEmitter(textureName: string)
-	{
-		const particles = this.add.particles(textureName)
-
-        const emitter = particles.createEmitter({
-            speed: 100,
-            scale: { start: 1, end: 0 },
-            blendMode: 'ADD'
-		})
-		
-		return emitter
+		var board = new Board(this, 400, 300, 8, ImageNames.Board);
+		// var knight = new Piece("knight", ImageNames.Knight);
+		// board.addPiece(knight, 0, 0);
+		var knight = this.add.image(400, 300, ImageNames.Knight);
 	}
 }
